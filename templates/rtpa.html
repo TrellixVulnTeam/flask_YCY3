@@ -47,10 +47,38 @@
    <link rel="stylesheet" href="{{ url_for('static', filename='material-dashboard.minf066.css') }}">
 
          <head>
-  <meta http-equiv="refresh" content="15">
+  <meta http-equiv="refresh" content="120">
 </head>  
+<style>
+.carousel-content {
+    color:black;
+    display:flex;
+    align-items:top;
+}
+</style>
+<script>
+   setCarouselHeight('#carousel-example');
 
+    function setCarouselHeight(id)
+    {
+        var slideHeight = [];
+        $(id+' .item').each(function()
+        {
+            // add all slide heights to an array
+            slideHeight.push($(this).height());
+        });
+
+        // find the tallest item
+        max = Math.max.apply(null, slideHeight);
+
+        // set the slide's height
+        $(id+' .carousel-content').each(function()
+        {
+            $(this).css('height',max+'px');
+        });
+    }
          </script>
+
 
   <!-- CSS Just for demo purpose, don't include it in your project -->
 
@@ -72,9 +100,12 @@
     
 
 
-                           <h3 > <b style="color:white"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Real Time RTPA Dashboard   </b><h3>
+                           <h3  style="color:white"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Real Time Critical Incident Alert    <h3>
+                            <table width="100%">
+                              <td width="45%">
                        <div class="row">
-                          <div class="col-md-6">
+                        <div class="col-md-12">
+                         
                             <div class="card card-chart">
                                
                               
@@ -99,7 +130,7 @@
 
                             {% endfor %}</td>
 
-                            <td width="20%"> <b style="color:white;font-size:118px;">  0  </b></td>
+                            <td width="20%"> <b style="color:white;font-size:70px;"> {{dict_result.get("Red", 0)}} </b></td>
                        
                              
                                    <p class="card-category"></p>
@@ -113,13 +144,25 @@
                     
                               </div>
                             </div>
-                          </div>
+                         
+
+
+                             </div>
+                              <div class="card-body">
+                               
+                              
+                             
+                                
+                        
+                           </div>
+                         </div>
 
 
 
          
                        <div class="row">
-                          <div class="col-md-6">
+                        <div class="col-md-12">
+                        
                             <div class="card card-chart">
                               
                               <div class="card-header card-header-success" data-header-animation="true">
@@ -139,7 +182,7 @@
 
                             {% endfor %}</td>
 
-                             <td width="20%"> <b style="color:white;font-size:118px;"> {{dict_result['Orange']}}  </b></td>
+                             <td width="20%"> <b style="color:white;font-size:70px;"> {{dict_result.get("Orange", 0)}}  </b></td>
                              
                                    <p class="card-category"></p>
                               </table>
@@ -155,32 +198,41 @@
                             </div>
                           </div>
 
-
          
                        <div class="row">
-                          <div class="col-md-6">
+                        <div class="col-md-12">
+                          
                             <div class="card card-chart">
                               
                               <div class="card-header card-header-info" data-header-animation="true">
                           
-                            <table width="100%" >
+                        <table width="100%" >
                               <td width="80%">
                              {% for i in aa %}
                                 {% if i[6]=='Yellow' %}
+                                 <table width="100%" >
+                              <td width="60%">
 
-                         <h3  ><b><font color="black">{{i[5]}} - &nbsp; &nbsp;{{i[4]}} </font></b></h3>
-                          {% endif %}
+                              <h3  ><b><font color="black">{{i[4]}} </font> </b></h3>
+                            </td>
+                            <td width="30%">
+                              <h4  ><b><font color="black">{{i[5]}}</font></b> </h4>
+                            </td>
+                            
+                             <td width="10%"></td>
+                      
+                          </table>
 
-
+                                   
+                               {% endif %}
 
 
                              
-                         
+               
 
                             {% endfor %}</td>
 
-                             <td width="20%"> <b style="color:black;font-size:118px;"> {{dict_result['Yellow']}}  </b></td>
-                      
+                             <td width="20%"> <b style="color:black;font-size:70px;"> {{dict_result.get("Yellow", 0)}}  </b></td>
                              
                                    <p class="card-category"></p>
                               </table>
@@ -190,8 +242,148 @@
                               </div>
                     
                               </div>
+                        
+                          </div>
+                        </div>
+
+
+                        </td>
+                        <td width="2%"></td>
+                    
+                           <td width="48%">
+
+
+
+                            <div  align="right"> 
+
+                               <div>
+                              <h4  ><b><font color="white">   </font> </b></h4>
+                            </div>
+                            
+
+  
+<div>
+                          
+ 
+
+
+                            <div class="col-md-12">
+                             
+
+
+                              <div id="carousel-example" class="carousel slide" data-ride="carousel">
+
+    <!-- Wrapper for slides -->
+    <div class="row">
+        <div class="col-xs-offset-15 ">
+            <div class="carousel-inner">
+
+
+                <div class="item active">
+                    <div class="carousel-content">
+                        <div>
+
+                          <br><br><br> <br><br><br><br><br><br> <br>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                 {% for i in aa %}
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                         
+                         
+     
+                     
+                          <div class="col-md-12">
+                            <div class="card card-chart">
+                              {%if i[6]=='Red'%}
+                              <div class="card-header card-header-rose" data-header-animation="true">
+                                   
+                                {%elif i[6]=='Orange'%}
+                              <div class="card-header card-header-success" data-header-animation="true">
+                                 
+                                     {%elif i[6]=='Yellow'%}
+                              <div class="card-header card-header-info" data-header-animation="true">
+                                   {% endif %}
+
+
+                             <h3  ><b><font color="black">{{i[5]}},&nbsp; {{i[4]}} </font></b></h3>
+
+
+                             
+                           </br> 
+                      
+                              {%if i[6]=='Yellow'%}
+                              <h4><font color="#696969">{{i[2]}}.</font></h4>
+                               
+
+                                  {%else%}
+                                   <h4 class="card-category">{{i[2]}}.</h4>
+                                    
+
+                                  {% endif %}
+                                  </div>
+                                   <div class="card-body">
+                                   <div class="card-footer">
+                                <div class="stats">
+                                   <h4><font color="#696969"><marquee>{{i[-3]}}</marquee></font></h4>
+                                </div>
+                              </div>
+
+                              
+
+                                  
+                            
                             </div>
                           </div>
+                        </div>
+
+
+                 
+
+                           
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                    {%endfor%}
+
+               
+                
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Controls --> <a class="left carousel-control" href="#carousel-example" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+ <a class="right carousel-control" href="#carousel-example" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+
+</div>
+                       
+  </div>
+ 
+
+
+   
+
+</td>
+
+                      
+
+
+
+
+                        </table>
 
 
 

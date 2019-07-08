@@ -1,5 +1,7 @@
 from flask import Flask ,render_template
 import sqlalchemy as db
+from pycricbuzz import Cricbuzz
+
 app = Flask(__name__)
 import timeago, datetime
 
@@ -28,15 +30,14 @@ def show_all():
 	ResultProxy1 = connection.execute(query1)
 	ResultSet1 = ResultProxy1.fetchall()
 	print(ResultSet1)
-	'''try:
-		print(ResultSet[0][0])
-	except:
-		ResultSet=[('',), ('',), ('',)]'''
+
 	dict_result={}
 	for i in ResultSet1:
 		dict_result[i[1]]=int(i[0])
 		print(dict_result)
 	
+
+			
 
 
 	return render_template('rtpa.html',aa=aa,current_time=current_time,timeago=timeago,dict_result=dict_result)
