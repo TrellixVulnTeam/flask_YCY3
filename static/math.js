@@ -8,7 +8,7 @@ $(function() {
         }
     });
  
-    $('#calc').click(function() {
+    $('#calc').click(function(s) {
         $('#info').css('display', "none");
         $('#description').css('display', "none");
         //console.log(url);
