@@ -1,4 +1,4 @@
-from flask import Flask ,render_template
+from flask import Flask ,render_template,jsonify, request
 import sqlalchemy as db
 from pycricbuzz import Cricbuzz
 
@@ -9,6 +9,8 @@ now = datetime.datetime.now()
 #ss
 date = datetime.datetime.now()
 print (timeago.format(date, now)) # will print 3 minutes ago
+import time
+import datetime
 	
 
 
@@ -30,24 +32,89 @@ def show_all():
 	ResultProxy1 = connection.execute(query1)
 	ResultSet1 = ResultProxy1.fetchall()
 	print(ResultSet1)
+	
 
 	dict_result={}
 	for i in ResultSet1:
 		dict_result[i[1]]=int(i[0])
 		print(dict_result)
-		print(dict_result)
+
+
+
+    
+	#if(matches[1]['mchstate'] != 'nextlive'):
+		#match1= (c.livescore(matches[1]['id']))
+		#print (c.commentary(match['id']))
+		#
+		#print (c.scorecard(match['id']))
+		#print(match1)
+
+
+
+		
+	
 
 	
 
 			
 
 
-	return render_template('rtpa.html',aa=aa,current_time=current_time,timeago=timeago,dict_result=dict_result)
+	return render_template('rtpa.html',aa=aa,current_time=current_time,timeago=timeago,dict_result=dict_result, reload = time.time())
 
+
+@app.route("/api/calc")
+def add():
+    a = int(request.args.get('a', 0))
+    b = int(request.args.get('b', 0))
+    div = 'na'
+    if b != 0:
+        div = a/b
+    return jsonify({
+        "a"        :  a,
+        "b"        :  b,
+        "add"      :  a+b,
+        "multiply" :  a*b,
+        "subtract" :  a-b,
+        "divide"   :  div,
+    })
+
+
+
+
+@app.route("/api/match")
+def cric():
+	c = Cricbuzz()
+	matches = c.matches()
+	for match in matches:
+		if(match['mchstate'] != 'nextlive'):
+			match1= (c.livescore(match['id']))
+			
+			if 'batting' in match1.keys():
+				a=(match1['batting']['score'])[0]
+				team=match1['batting']['team']
+				run=a['runs']
+				wickets=a['wickets']
+				overs=a['overs']
+				score=team +"  :   "+run+' / '+wickets +' in  '+ overs
+				bats=(match1['batting']['batsman'])[0]
+				batsman=(bats['name']),' : ',(bats['runs']),' in ',(bats['balls']),' balls'
+				print(match1['batting']['team'],a['runs'],' / ',a['wickets'] ,'in',a['overs'])
+				break
+
+	return jsonify({
+"batsman":batsman,
+"score": score,
+"team"        :  team,
+"run"      :  run,
+"wickets" :  wickets,
+"overs" :  overs,
+"time":datetime.datetime.now(),
+
+    })
 
 
 
 if __name__ == '__main__':
-   app.run(host= '0.0.0.0')
+   app.run(port= 5003)
 
 

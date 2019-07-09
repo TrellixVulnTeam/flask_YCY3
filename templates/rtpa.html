@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard PRO by Creative Tim
+   Orange Business Services
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Extra details for Live View on GitHub Pages -->
@@ -47,7 +47,7 @@
    <link rel="stylesheet" href="{{ url_for('static', filename='material-dashboard.minf066.css') }}">
 
          <head>
-  <meta http-equiv="refresh" content="120">
+  <meta http-equiv="refresh" content="700">
 </head>  
 <style>
 .carousel-content {
@@ -96,11 +96,40 @@
 
       
     <!-- Since we are using the class container, the below 
-        div will not take complete width of it's parent. -->
+        div will not take complete width of it's parent. --><table width="100%">
+          <td width="65%">
     
+                        
+
+                           <h3  style="color:white"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Real Time Critical Incident Alert    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    </h3> </td>
+                              <td width="30%">
+                                  
+                             
+                              </td>
+                              <td width="5%">
+                              <button id="match"></button>
+                            </td>
+
+                         </table>
 
 
-                           <h3  style="color:white"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Real Time Critical Incident Alert    <h3>
+
+   
+  
+     
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/static/cric.js?r={{reload}}"></script>
+
+</body>
+<script >setInterval(function () {document.getElementById("match").click();}, 15000);</script> 
+
+
+ <h3>
                             <table width="100%">
                               <td width="45%">
                        <div class="row">
@@ -253,12 +282,17 @@
                            <td width="48%">
 
 
+<div class="col-md-10" align="right">
+  
 
-                            <div  align="right"> 
 
-                               <div>
-                              <h4  ><b><font color="white">   </font> </b></h4>
-                            </div>
+                           <IMG SRC="/static/flag.gif" width="100" height="50">   </IMG>
+                                <h2  style="color:white">   <div id="score" ></div></h2>
+                                 <h4  style="color:orange">   <div id="batsman" ></div></h4>
+                            
+                               <br><br><br> <br> 
+                             </div>
+
                             
 
   
