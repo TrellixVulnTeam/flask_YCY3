@@ -37,7 +37,7 @@ def show_all():
 	dict_result={}
 	for i in ResultSet1:
 		dict_result[i[1]]=int(i[0])
-		#print(dict_result)
+		print(dict_result)
 
 
 
