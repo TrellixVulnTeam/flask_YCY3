@@ -85,7 +85,9 @@ def add():
 def cric():
 	c = Cricbuzz()
 	matches = c.matches()
-	for match in matches:
+	match=matches[2]
+	if True:
+		print(match)
 		if(match['mchstate'] != 'nextlive'):
 			match1= (c.livescore(match['id']))
 			
@@ -99,9 +101,8 @@ def cric():
 				bats=(match1['batting']['batsman'])[0]
 				batsman=(bats['name']),' : ',(bats['runs']),' in ',(bats['balls']),' balls'
 				print(match1['batting']['team'],a['runs'],' / ',a['wickets'] ,'in',a['overs'])
-				break
-
-	return jsonify({
+				#break
+				return jsonify({
 "batsman":batsman,
 "score": score,
 "team"        :  team,
@@ -111,7 +112,19 @@ def cric():
 "time":datetime.datetime.now(),
 
     })
+			else:
+				temp='India VS NZ'
+				return jsonify({
+"batsman":temp,
+"score":temp ,
+"team"        :  temp,
+"run"      :  temp,
+"wickets" :  temp,
+"overs" :  temp,
+"time":datetime.datetime.now(),
 
+
+  })
 
 
 if __name__ == '__main__':

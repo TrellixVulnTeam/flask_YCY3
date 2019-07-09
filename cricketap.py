@@ -5,7 +5,8 @@ for match in matches:
 	#print (match)
 	if(match['mchstate'] != 'nextlive'):
 		#match1= (c.livescore(match['id']))
-		print (c.commentary(match['id']))
+		#print (c.commentary(match['id']))
+		print c.matchinfo(match['id'])
 		#
 		#print (c.scorecard(match['id']))
 	
